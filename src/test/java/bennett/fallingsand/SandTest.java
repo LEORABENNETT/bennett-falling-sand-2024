@@ -42,6 +42,7 @@ class SandTest {
         // then
         assertEquals("000\n010\n000\n", sand.toString());
     }
+
     @Test
     public void fallOnGround() {
         // given
@@ -54,6 +55,7 @@ class SandTest {
         // then
         assertEquals("000\n000\n010\n", sand.toString());
     }
+
     @Test
     public void fallOnOtherSand() {
         // given
