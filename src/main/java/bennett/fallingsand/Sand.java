@@ -1,6 +1,7 @@
 package bennett.fallingsand;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Sand {
     private final int[][] field;
@@ -14,6 +15,40 @@ public class Sand {
     public Sand(int width, int height, Random random) {
         field = new int[height][width];
         this.random = random;
+    }
+
+    public static void main(String[] args) {
+        int width = 50;
+        int height = 10;
+        int initialSand = 50;
+
+        Sand sand = new Sand(width, height);
+        sand.randomSand(initialSand);
+
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println(sand.toString());
+            System.out.println("please press enter so sand can fall");
+            scanner.nextLine();
+            sand.fall();
+        }
+    }
+
+    /**
+     * Adds random sand to our field
+     *
+     * @param n the amount of sand to add.
+     */
+
+    public void randomSand(int n) {
+        int width = field[0].length;
+        int height = field.length;
+
+        for (int i = 0; i < n; i++) {
+            int x = random.nextInt(width);
+            int y = random.nextInt(height);
+            field[y][x] = 1; // Place sand at the randomly generated position
+        }
     }
 
     public String toString() {
