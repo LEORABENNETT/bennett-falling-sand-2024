@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
 
 class SandTest {
 
@@ -59,9 +61,8 @@ class SandTest {
     }
 
     @Test
-    public void fallOnOtherSand() {
+    public void fallToTheRight() {
         // given
-        Sand sand = new Sand();
         Sand sand = new Sand(3, 3);
         sand.put(1, 1);
         sand.put(1, 2);
@@ -71,7 +72,6 @@ class SandTest {
         sand.fall();
 
         // then
-        assertEquals("000\n010\n010\n", sand.toString());
         assertEquals("000\n000\n111\n", sand.toString());
     }
 
