@@ -80,10 +80,6 @@ public class Sand {
     /**
      * Moves the sand from x1, y1, to x2, y2
      *
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
      * @return true if the move was successful, otherwise false
      */
     public boolean move(int x1, int y1, int x2, int y2) {
