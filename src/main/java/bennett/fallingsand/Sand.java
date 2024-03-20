@@ -107,7 +107,7 @@ public class Sand {
         // moves all sand down one square
         for (int y = field.length - 2; y >= 0; y--) {
             for (int x = 0; x < field[y].length; x++) {
-                if (isSand(y, x)) {
+                if (isSand(x, y)) {
                     moveSandDown(x, y);
                 }
             }
