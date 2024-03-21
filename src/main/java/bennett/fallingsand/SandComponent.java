@@ -31,5 +31,11 @@ public class SandComponent extends JComponent {
         }
 
         repaint();
+
+        try {
+            Thread.sleep(25);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
