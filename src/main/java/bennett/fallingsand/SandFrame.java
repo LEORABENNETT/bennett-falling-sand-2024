@@ -17,13 +17,13 @@ public class SandFrame extends JFrame {
         sand.randomSand(4000);
 
         SandComponent sandComponent = new SandComponent(sand);
-        add(sandComponent, BorderLayout.CENTER); // Add the SandComponent to the frame
+        add(sandComponent, BorderLayout.CENTER);
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             SandFrame frame = new SandFrame();
-            frame.setVisible(true); // Make the frame visible
+            frame.setVisible(true);
         });
     }
 }
