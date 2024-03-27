@@ -38,7 +38,7 @@ class SandTest {
     public void fall() {
         // given
         Sand sand = new Sand(3, 3);
-        sand.put(1, 0);
+        sand.load("010\n000\n000\n");
 
         // when
         sand.fall();
@@ -168,49 +168,54 @@ class SandTest {
     }
 
 
-    /*@Test
-    public void testResize() {
+    @Test
+    public void resizeSmaller() {
+        // given
         Sand sand = new Sand(3, 3);
-        sand.put(0, 0, 3, 3, 1);
-        sand.resize(5, 5);
-        assertEquals(5, sand.getHeight());
-        assertEquals(5, sand.getWidth());
-        assertEquals(1, sand.get(0, 0));
-        assertEquals(1, sand.get(2, 2));
-        assertEquals(0, sand.get(4, 4));
+        sand.put(1, 1);
+
+        // when
+        sand.resize(2, 2);
+
+        // then
+        assertEquals("00\n01\n", sand.toString());
     }
 
     @Test
-    public void testLoad() {
-        Sand sand = new Sand(3, 3);
-        sand.load("111\n000\n111\n");
-        assertEquals(1, sand.get(0, 0));
-        assertEquals(1, sand.get(2, 0));
-        assertEquals(1, sand.get(0, 2));
-        assertEquals(0, sand.get(1, 1));
+    public void resizeLarger() {
+        // given
+        Sand sand = new Sand(2, 2);
+        sand.put(1, 1);
+
+        // when
+        sand.resize(3, 3);
+
+        // then
+        assertEquals("000\n010\n000\n", sand.toString());
     }
 
     @Test
-    public void testPut() {
-        int width = 5;
-        int height = 5;
-        double probability = 0.5;
-        Random random = new Random(123);
+    public void load() {
+        // given
+        Sand sand = new Sand(3, 3);
+        sand.put(0, 0);
 
-        Sand sand = new Sand(width, height, random);
-        sand.put(0, 0, width, height, probability);
+        // when
+        sand.load("000\n010\n000\n");
 
-        int sandCount = 0;
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                if (sand.get(x, y) == 1) {
-                    sandCount++;
-                }
-            }
-        }
+        // then
+        assertEquals("000\n010\n000\n", sand.toString());
+    }
 
-        int expectedSandCount = (int) (width * height * probability);
+    @Test
+    public void putMultiple() {
+        // given
+        Sand sand = new Sand(5, 5);
 
-        assertTrue(Math.abs(expectedSandCount - sandCount) <= 1, "Unexpected number of sand particles");
-    }*/
+        // when
+        sand.put(1, 1, 3, 3, 1.00);
+
+        // then
+        assertEquals("00000\n01110\n01110\n01110\n00000\n", sand.toString());
+    }
 }

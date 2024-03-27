@@ -2,6 +2,9 @@ package bennett.fallingsand;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 public class SandComponent extends JComponent {
 
@@ -9,6 +12,45 @@ public class SandComponent extends JComponent {
 
     public SandComponent(Sand sand) {
         this.sand = sand;
+
+        addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                sand.put(e.getX(), e.getY(), 10, 10, .3);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+        addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                sand.put(e.getX(), e.getY(), 10, 10, .3);
+
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+
+            }
+        });
     }
 
     @Override
@@ -33,7 +75,7 @@ public class SandComponent extends JComponent {
         repaint();
 
         try {
-            Thread.sleep(25);
+            Thread.sleep(5);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

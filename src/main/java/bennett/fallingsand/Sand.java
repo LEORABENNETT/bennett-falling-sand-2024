@@ -3,6 +3,8 @@ package bennett.fallingsand;
 import java.util.Random;
 import java.util.Scanner;
 
+import static java.lang.Math.min;
+
 public class Sand {
     private final Random random;
     private int[][] field;
@@ -54,8 +56,8 @@ public class Sand {
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
-        for (int y = 0; y < 3; y++) {
-            for (int x = 0; x < 3; x++) {
+        for (int y = 0; y < field.length; y++) {
+            for (int x = 0; x < field[y].length; x++) {
                 builder.append(field[y][x]);
             }
             builder.append("\n");
@@ -133,41 +135,46 @@ public class Sand {
         return field[y][x] == 1;
     }
 
-    /*public void resize(int width, int height) {
-        int[][] newField = new int[height][width];
-        int minHeight = Math.min(height, field.length);
-        int minWidth = Math.min(width, field[0].length);
+    public void resize(int width, int height) {
+        int newField[][] = new int[height][width];
 
-        for (int y = 0; y < minHeight; y++) {
-            System.arraycopy(field[y], 0, newField[y], 0, minWidth);
+        for (int y = 0; y < min(field.length, newField.length); y++) {
+            System.arraycopy(field[y], 0, newField[y], 0,
+                    min(field[y].length, newField[y].length));
         }
+
         field = newField;
     }
 
-    public void load(String sandString) {
-        String[] lines = sandString.split("\n");
-        int height = lines.length;
-        int width = lines[0].length();
-        field = new int[height][width];
-
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                if (lines[y].charAt(x) == '1') {
+    public void put(int startX, int startY, int width, int height, double probability) {
+        for (int y = startY; y < startY + height; y++) {
+            for (int x = startX; x < startX + width; x++) {
+                if (random.nextDouble() <= probability) {
                     field[y][x] = 1;
-                } else {
-                    field[y][x] = 0;
                 }
             }
         }
     }
 
-    public void put(int x, int y, int width, int height, double probability) {
-        for (int i = y; i < y + height; i++) {
-            for (int j = x; j < x + width; j++) {
-                if (random.nextDouble() <= probability) {
-                    field[i][j] = 1;
+    public void load(String s) {
+        int y = 0;
+        int x = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            switch (c) {
+                case '\n' -> {
+                    y++;
+                    x = 0;
+                }
+                case '1' -> {
+                    field[y][x] = 1;
+                    x++;
+                }
+                case '0' -> {
+                    field[y][x] = 0;
+                    x++;
                 }
             }
         }
-    }*/
+    }
 }
