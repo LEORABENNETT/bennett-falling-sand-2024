@@ -75,9 +75,6 @@ public class Sand {
     /**
      * Sets the value in field to be 1
      */
-    public void put(int x, int y) {
-        field[y][x] = 1;
-    }
 
     /**
      * Moves the sand from x1, y1, to x2, y2
@@ -146,6 +143,10 @@ public class Sand {
         field = newField;
     }
 
+    public void put(int x, int y) {
+        field[y][x] = 1;
+    }
+
     public void put(int startX, int startY, int width, int height, double probability) {
         for (int y = startY; y < startY + height; y++) {
             for (int x = startX; x < startX + width; x++) {
@@ -170,7 +171,7 @@ public class Sand {
                     field[y][x] = 1;
                     x++;
                 }
-                case '0' -> {
+                default -> {
                     field[y][x] = 0;
                     x++;
                 }
