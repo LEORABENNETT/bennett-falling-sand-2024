@@ -147,6 +147,14 @@ public class Sand {
         field[y][x] = 1;
     }
 
+    /**
+     * @param startX      top left of the rectangle
+     * @param startY      top left of the rectangle
+     * @param width       width of area of sand
+     * @param height      height of area of sand
+     * @param probability that an empty spot in the rectangle will be sand
+     */
+
     public void put(int startX, int startY, int width, int height, double probability) {
         for (int y = startY; y < startY + height; y++) {
             for (int x = startX; x < startX + width; x++) {
